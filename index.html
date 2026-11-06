@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Science Explorer - turn a topic into something you can explore</title>
+<meta name="description" content="Type a science topic, get a structured explainer, then click any part to dive deeper. Diagrams included. Bring your own Pollen.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <div class="brand-mark" aria-hidden="true">SE</div>
+    <div>
+      <h1>Science Explorer</h1>
+      <p class="tagline">Turn a science topic into something you can explore</p>
+    </div>
+  </div>
+  <div class="topbar-status">
+    <span id="modeBadge" class="badge badge-demo">Demo mode - built-in sample only</span>
+    <span id="keyStatus" class="key-status">No key set</span>
+  </div>
+</header>
+
+<main class="layout">
+  <section class="panel setup-panel" aria-label="Setup">
+    <h2>1. Your Pollen key</h2>
+    <p class="hint">
+      Bring your own Pollen. Paste a Pollinations secret key (sk_...) below.
+      The key is stored only in this browser, in localStorage, and requests
+      go only to gen.pollinations.ai. No key? The app runs in demo mode with
+      a clearly labelled built-in sample on photosynthesis.
+    </p>
+    <label class="field-label" for="keyInput">Pollinations API key</label>
+    <div class="key-row">
+      <input id="keyInput" type="password" autocomplete="off" spellcheck="false" placeholder="sk_...">
+      <button id="validateKeyBtn" type="button">Validate key</button>
+      <button id="clearKeyBtn" type="button" class="ghost">Clear</button>
+    </div>
+    <p id="keyMessage" class="key-message" role="status"></p>
+    <p class="hint">Get a key at enter.pollinations.ai. One explainer is one chat call, each dive is one more, and the diagram is one image call.</p>
+
+    <h2>2. Pick a topic</h2>
+    <label class="field-label" for="topicInput">Science topic</label>
+    <input id="topicInput" type="text" autocomplete="off" spellcheck="false" placeholder="e.g. black holes, vaccines, plate tectonics, tides">
+    <label class="field-label" for="modelSelect">Text model</label>
+    <select id="modelSelect"></select>
+    <label class="field-label" for="imageModelSelect">Image model</label>
+    <select id="imageModelSelect"></select>
+    <div class="controls">
+      <button id="exploreBtn" type="button" class="primary">Explore topic</button>
+      <button id="demoBtn" type="button" class="ghost">Load the demo sample</button>
+    </div>
+    <p id="statusLine" class="status-line" role="status"></p>
+
+    <div class="rules-box">
+      <h3>How exploring works</h3>
+      <ul>
+        <li>The model returns a strict JSON explainer: key ideas, a step by step mechanism, common misconceptions, 3 questions.</li>
+        <li>A reply that is not valid JSON gets exactly one repair retry, then an error. Nothing half parsed is shown.</li>
+        <li>Every idea, step, misconception and question is clickable. A click makes a second call with that part as context.</li>
+        <li>Each dive ends with a check question, so reading turns into testing yourself.</li>
+        <li>The diagram is fetched with your key in the header, never in the URL.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="panel result-panel" aria-label="Explainer">
+    <div id="demoBanner" class="demo-banner" hidden>
+      Demo mode: this is the built-in photosynthesis sample, not a live answer. Add your own key to explore any topic.
+    </div>
+    <div id="explainer"></div>
+    <div id="imagePanel"></div>
+  </section>
+</main>
+
+<footer class="footer">
+  <p>
+    Science Explorer runs fully in your browser. Topics are explored through
+    gen.pollinations.ai with your own key and your own Pollen.
+    Source and quest notes: see README.md in this project.
+    <a href="https://pollinations.ai">Made with pollinations.ai</a>
+  </p>
+</footer>
+
+<script src="core.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
