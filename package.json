@@ -1,0 +1,1 @@
+{"description":"Turn a science topic into something you can explore. A static Pollinations app, bring your own Pollen.","name":"science-explorer","private":true,"scripts":{"test":"node --test tests/core.test.js"},"version":"1.0.0"}
