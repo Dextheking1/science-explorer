@@ -1,5 +1,7 @@
 # Science Explorer
 
+[![Made with pollinations.ai](https://raw.githubusercontent.com/pollinations/pollinations/main/packages/ui/src/brand/badge-made-with.svg)](https://pollinations.ai/?ref=badge)
+
 Turn a science topic into something you can explore.
 
 Type a topic, get a structured explainer, then click any part of it to go
